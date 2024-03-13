@@ -136,7 +136,8 @@ cython_debug/
 .idea
 
 # macOS files
-.DS_Store!/PYTHON APPS/Alarm_Clock/media/image/main.png
+.DS_Store
+!/PYTHON APPS/Alarm_Clock/media/image/main.png
 
 !/PYTHON APPS/Alarm_Clock/media/image/chose_timer.png
 

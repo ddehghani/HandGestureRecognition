@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from tqdm.notebook import tqdm
+from tqdm import tqdm
 
 def accuracy(outputs, labels):
     _, preds = torch.max(outputs, dim=1)
@@ -34,7 +34,7 @@ class ImageClassificationBase(nn.Module):
 
 # LeNet Architecture
 class CnnModel(ImageClassificationBase):
-    def __init__(self, classes):
+    def __init__(self, target_classes_count):
         super().__init__()
         self.network = nn.Sequential(
             nn.Conv2d(3, 100, kernel_size=3, padding=1),
@@ -65,7 +65,7 @@ class CnnModel(ImageClassificationBase):
             nn.Linear(64, 32),
             nn.ReLU(),
             nn.Dropout(0.25),
-            nn.Linear(32, len(classes)))
+            nn.Linear(32, target_classes_count))
         
     def forward(self, xb):
         return self.network(xb)

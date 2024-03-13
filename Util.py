@@ -5,7 +5,6 @@ import cv2 as cv
 from torchvision.transforms import v2
 
 train_transform = v2.Compose([
-        # size is 3840x2160 
         v2.ToTensor(),
         v2.Resize(54),              # resize shortest side
         v2.CenterCrop(96),          # crop longest side
@@ -21,23 +20,17 @@ class VideoStreamDataset (IterableDataset):
     
     def __iter__(self):
         cap = cv.VideoCapture(self.file_path)
-        # k = 0
         while True:
-            # k += 1
             _, frame = cap.read()
             if frame is None:
                 return None
             frame = bgremove(frame)
             frame = train_transform(frame)
-            # if k % 60 == 0:
-            #     plt.imshow(frame.permute(1,2,0))
-            #     plt.pause(1)
             yield frame
 
 def bgremove(frame):
     gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY) 
-    # apply binary thresholding
-    _ , thresh = cv.threshold(gray, 90, 255, cv.THRESH_BINARY)
+    _ , thresh = cv.threshold(gray, 100, 255, cv.THRESH_BINARY)
     return thresh
 
 def get_default_device():
@@ -68,15 +61,15 @@ class DeviceDataLoader():
         """Number of batches"""
         return len(self.dl)
     
-def plot_accuracies(history):
+def plot_accuracies(history, path):
     accuracies = [x['val_acc'] for x in history]
     plt.plot(accuracies, '-x')
     plt.xlabel('epoch')
     plt.ylabel('accuracy')
     plt.title('Accuracy vs. No. of epochs')
-    plt.show()
+    plt.savefig(path)
     
-def plot_losses(history):
+def plot_losses(history, path):
     train_losses = [x.get('train_loss') for x in history]
     val_losses = [x['val_loss'] for x in history]
     plt.plot(train_losses, '-bx')
@@ -85,7 +78,7 @@ def plot_losses(history):
     plt.ylabel('loss')
     plt.legend(['Training', 'Validation'])
     plt.title('Loss vs. No. of epochs')
-    plt.show()
+    plt.savefig(path)
 
 def augmentImage(img, text):
     font                   = cv.FONT_HERSHEY_SIMPLEX

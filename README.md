@@ -10,8 +10,8 @@ Please clone the repository and install the requirements like below:
 
 ```<pre>
 git clone https://github.com/ddehghani/HandGestureRecognition.git
-cd ./HandGestureRecognition
-pip install -r requirements. txt
+cd HandGestureRecognition
+pip install -r requirements.txt
 ```
 
 ## Usage

@@ -42,9 +42,9 @@ def main(args: argparse.Namespace):
     train_ds = ImageFolder(train_dir, transform=train_transform)
     test_ds = ImageFolder(test_dir, transform=train_transform)
 
-    print(f'\n{"-" *20}\nTraining the model:\n'
+    print(f'\n{"-" *36}\nTraining the model:\n'
           f'Training data: {len(train_ds)}, Test data: {len(test_ds)}'
-          f'\n{"-" *20}\n')
+          f'\n{"-" *36}\n')
     with open(os.path.join(args.output, 'classes.dict'), 'wb') as f:
         pickle.dump(train_ds.class_to_idx, f)
 
@@ -84,7 +84,8 @@ def genSamples(source: os.PathLike, temp_dir: os.PathLike,
     and store them in the temp_dir according to the source dir structure
     return train and test directories
     """
-    shutil.rmtree(temp_dir)  # delete any temporary data from previous training
+    if os.path.isdir(temp_dir):
+        shutil.rmtree(temp_dir)  # delete any exisitng temporary data
     os.mkdir(temp_dir)
     train_dir = os.path.join(temp_dir, './train')
     test_dir = os.path.join(temp_dir, 'test')

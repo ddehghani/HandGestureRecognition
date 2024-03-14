@@ -61,7 +61,7 @@ if __name__ == '__main__':
 
     parser.add_argument('source')
     parser.add_argument('-m', '--model', required=True)
-    parser.add_argument('-cf', '--class-file', required=True)
+    parser.add_argument('-c', '--class-file', required=True)
     parser.add_argument('-o', '--output', default='./results')
 
     main(parser.parse_args())

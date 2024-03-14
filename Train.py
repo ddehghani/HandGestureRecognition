@@ -132,11 +132,26 @@ if __name__ == '__main__':
                 description='Given data in the form of video, trains a CNN '
                             'on hand gesture recognition task')
 
-    parser.add_argument('source')
-    parser.add_argument('-o', '--output', default='./output')
-    parser.add_argument('-s', '--sample-count', default=1000, type=int)
-    parser.add_argument('-e', '--epoch-count', default=2, type=int)
-    parser.add_argument('-lr', '--learning-rate', default=0.001, type=float)
-    parser.add_argument('-k', '--keep-samples', action='store_true')
+    parser.add_argument('source', help='Path to the directory containing hand '
+                        'gesture videos. For more information regarding the '
+                        'required directory structe, please read the README.md'
+                        ' file.')
+    parser.add_argument('-o', '--output', default='./output',
+                        help='The directory where all the outputs will be '
+                        'written. This includes a pytorch model, a dictionary '
+                        'to show map target categories with integers used in '
+                        'the model, and some plots saved as images to show the'
+                        ' training performance of the model.')
+    parser.add_argument('-s', '--sample-count', default=1000, type=int,
+                        help='The number of samples to be extracted from the '
+                        'video, this number cannot be more than the total '
+                        'number of frames of each video.')
+    parser.add_argument('-e', '--epoch-count', default=2, type=int,
+                        help='The number of epochs to train the CNN model.')
+    parser.add_argument('-lr', '--learning-rate', default=0.001, type=float,
+                        help='The learning rate of the CNN model.')
+    parser.add_argument('-k', '--keep-samples', action='store_true',
+                        help='Whether to keep the samples extracted from the '
+                        'video after the training is complete.')
 
     main(parser.parse_args())

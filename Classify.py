@@ -59,9 +59,15 @@ if __name__ == '__main__':
                 prog='HGR Classifier',
                 description='Evaluates hand gestures in a batch of videos')
 
-    parser.add_argument('source')
-    parser.add_argument('-m', '--model', required=True)
-    parser.add_argument('-c', '--class-file', required=True)
-    parser.add_argument('-o', '--output', default='./results')
+    parser.add_argument('source', help='The path to the directory containing '
+                        'the videos to be classified')
+    parser.add_argument('-m', '--model', required=True,
+                        help='Path to saved model (.pth file).')
+    parser.add_argument('-c', '--class-file', required=True,
+                        help='Path to the class dictionary file.')
+    parser.add_argument('-o', '--output', default='./results',
+                        help='The disired output directory. The processed '
+                        'videos will be saved in this directory using their '
+                        'source names.')
 
     main(parser.parse_args())

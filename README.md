@@ -4,6 +4,8 @@ Hand gesture recognition is an emerging field within computer vision that focuse
 The relevance of hand gesture recognition extends beyond enhancing user interfaces. It offers solutions for seamless control in environments where traditional input devices are impractical, such as medical rehabilitation, remote device control, and interactive learning environments. By bridging the gap between complex commands and natural gestures, this technology can improve accessibility and efficiency across various domains.
 Our project aims to contribute to this growing field by leveraging an existing dataset from Kaggle, supplemented with user-generated data, to train a customizable CNN model for hand gesture recognition. Implemented in Python, this application is designed to be accurate, efficient, and adaptable to specific use cases, addressing real-world challenges through innovative application of this technology.
 
+We used https://www.kaggle.com/datasets/aryarishabh/hand-gesture-recognition-dataset to pre-train our HGR model to speed up training on use defined gestures. 
+
 ## Installation
 
 Please clone the repository and install the requirements like below:
